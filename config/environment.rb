@@ -4,12 +4,28 @@ require 'yaml/store'
 require 'ostruct'
 require 'date'
 
-
 require 'bundler/setup'
 Bundler.require
 
 
 # put the code to connect to the database here
-
+ActiveRecord::Base.establish_connection(
+  :adapter => "sqlite3",
+  :database => "../mechanics-of-migrations-nyc-web-career-031119/db/artists.sqlite"
+)
+# unlike the require_relative below, :database not recognizing the correct path without stating the mechanics-of-migrations directory....need to ask tcf
 
 require_relative "../artist.rb"
+
+# sql = <<-SQL
+#   CREATE TABLE IF NOT EXISTS artists (
+#   id INTEGER PRIMARY KEY,
+#   name TEXT,
+#   genre TEXT,
+#   age INTEGER,
+#   hometown TEXT
+#   )
+# SQL
+#
+#
+#  ActiveRecord::Base.connection.execute(sql)
